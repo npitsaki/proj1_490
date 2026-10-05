@@ -1,0 +1,37 @@
+// this one just passes along the pc as it comes in on it'sinput wire to it's output register
+//  which the IM and +2 adder take as input via a wire in the outer/main cpu module.
+// JUST THE PC REGISTER BASICALLY.
+module program_counter (input wire[15:0] input_pc, output reg[15:0] output_pc, input wire clock);
+    always @(posedge clock) begin
+      output_pc <= input_pc;
+    end
+endmodule
+
+
+module adder_u16bit (input wire[15:0] input_a, input wire[15:0] input_b, output reg[15:0] result);
+    // unsigned and overflows at 16-bits
+    result <= input_a + input_b;
+endmodule
+
+
+// the instruction is indexed from the lut im then put onto the output register for a wire to
+//  attach to and send to other components for decoding
+// (NOTE: instruction memory is only word addressable, data memory is byte addressable)
+module instruction_memory (input wire[15:0] cur_pc, output reg[15:0] cur_instruction);
+    // need minimum of 64 memory locations here
+    integer i;
+    reg [15:0] im [0:63];
+    // initialize the instruction memory to all zeroes? 
+    //  (probably should load it from a file on the computer i think for testing/possibly for final version?)
+    initial begin
+        for (i = 0; i < 64; i = i + 1) begin
+            im[i] = 16'h0000;
+        end
+    end
+
+    // sensitivity here is cur_pc i think but for now just do * for all
+    always @(*) begin
+        cur_instruction <= im[cur_pc];
+    end
+
+endmodule
