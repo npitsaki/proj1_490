@@ -1,5 +1,3 @@
-09/21/2026-09/28/2026: I’ve been studying Verilog and how to use Vivado.  Also looking into how to upload to the Xilinx device.
-
-09/29/2026: I started design by going through components (PC, Instruction Memory, Data Memory, ALUs, etc) and writing out in plain english what they do and how I think they’ll be implemented in Verilog at high level (ex. PC takes an input wire, stores it in an internal register, and passes it along to an output wire, ALU is a case-statement that decodes the value from the input ALUOp wire and decides which operation to perform on the input data, then this result is passed to an output wire).
-
-10/01/2026: Started writing the simplest components in Verilog (PC and Instruction Memory).
+10/10/2026: I’ve been further working on the components in Verilog.
+10/18/2026: I finished writing all the components required by the project in Verilog.
+10/19-24/2026: Plan on working testing the Verilog code I’ve written and starting the top level structural CPU code that connects all the behavioral components.
